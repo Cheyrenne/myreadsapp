@@ -1,38 +1,74 @@
-.App {
-  text-align: center;
+/* css tricks from the course 
+max-width actually overrides the width, which means that the image will be kept contained within its container.
+*/
+img {
+  max-width: 100%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: 10vh;
+  color: white;
+  font-size: calc(10px + 3vmin);
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  margin: 0 30vh;
+}
+
+.shelf {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.book {
+  text-align: center;
+  border: 1px solid lightgray;
+  padding: 0;
+  margin-right: 40px;
+  list-style-type: none;
+  box-shadow: 0 0 10px lightslategray;
+  background-color: peru;
+}
+  
+  
+figure {
+  width: 150px;
+  height: 250px;
+  overflow-y: hidden;
+}
+
+figcaption {
+  font-weight: bold;
+}
+
+figcaption, figure > p {
+  font-size: 14px;
+  margin: 0;
+
+}
+
+figure > img {
+  height: 175px;
+  width: inherit;
+}
+
+.dropdown {
+}
+
+footer {
+  margin-top: 50px;
+  background-color: #282c34;
+  min-height: 10vh;
   color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  font-size: calc(10px + 1vmin);
 }
