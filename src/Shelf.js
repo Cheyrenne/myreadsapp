@@ -3,7 +3,7 @@ import Book from './Book'
 import PropTypes from 'prop-types'
 
 const Shelf = (props) => {
-    const { shelfBooks, shelfname } = props;
+    const { shelfBooks, shelfname , onShelfChange} = props;
 
     return (
         <div>
@@ -14,6 +14,7 @@ const Shelf = (props) => {
                         className='book'
                         key={book.id}
                         book={book}
+                        onChange={onShelfChange}
                     ></Book>
                 ))}
             </ul>
@@ -23,7 +24,8 @@ const Shelf = (props) => {
 }
 
 Shelf.propTypes = {
-    shelfBooks: PropTypes.array.isRequired
+    shelfBooks: PropTypes.array.isRequired,
+    shelfname: PropTypes.string.isRequired
 }
 
 export default Shelf
