@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import * as BooksAPI from './BooksAPI'
 import Shelf from './Shelf';
-import { Route } from 'react-router-dom'
+import SearchBooks from './SearchBooks'
+import { Route, Link } from 'react-router-dom'
 
 // values returned from server mapped to heading names
 const SHELVES = {
@@ -52,35 +53,36 @@ class App extends Component {
 
     return (
       <div className="App">
-
-        <header className="App-header">
-          <p>MyReads</p>
-        </header>
-
         <div className="container">
 
+          {/* Root/home page */}
           <Route exact path='/' render={() => (
-              Object.entries(SHELVES).map(shelf => (
-              <Shelf
-                key={shelf[0]}
-                shelfname={shelf[1]}
-                shelfBooks={this.state[shelf[0]]}
-                onShelfChange={this.onShelfChange}
-              />
-            ))
+            <div>
+              <header className="app-header">
+                <p>MyReads</p>
+              </header>
+              {Object.entries(SHELVES).map(shelf => (
+                <Shelf
+                  key={shelf[0]}
+                  shelfname={shelf[1]}
+                  shelfBooks={this.state[shelf[0]]}
+                  onShelfChange={this.onShelfChange}
+                />
+              ))}
+              <div className='open-search'>
+                <Link to='/search'>Search</Link>
+              </div>
+            </div>
+
           )} />
 
-
-
-
-
+          {/* Search page*/}
+          <Route path='/search' render={() => (
+            <SearchBooks onShelfChange={this.onShelfChange} />
+          )}
+          />
         </div>
-
-        <footer>
-          &copy; Pretty Footer
-      </footer>
-
-      </div >
+      </div>
     )
   }
 }

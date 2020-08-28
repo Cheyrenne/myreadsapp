@@ -7,7 +7,7 @@ const Shelf = (props) => {
 
     return (
         <div>
-            <h2>{shelfname}</h2>
+            <h2 className='shelf-title'>{shelfname}</h2>
             <ul className='shelf'>
                 {shelfBooks.map(book => (
                     <Book
@@ -25,7 +25,8 @@ const Shelf = (props) => {
 
 Shelf.propTypes = {
     shelfBooks: PropTypes.array.isRequired,
-    shelfname: PropTypes.string.isRequired
+    shelfname: PropTypes.string.isRequired,
+    onShelfChange: PropTypes.func.isRequired
 }
 
 export default Shelf
