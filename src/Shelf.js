@@ -6,7 +6,7 @@ const Shelf = (props) => {
     const { shelfBooks, shelfname , onShelfChange} = props;
 
     return (
-        <div>
+        <div className='list-books-content'>
             <h2 className='shelf-title'>{shelfname}</h2>
             <ul className='shelf'>
                 {shelfBooks.map(book => (

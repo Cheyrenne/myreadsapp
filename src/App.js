@@ -34,18 +34,25 @@ class App extends Component {
 
     //TODO: prevent from "changing" to the same shelf
 
-    const prevShelf = book.shelf;
+    const prevShelf = book.shelf === undefined ? '' : book.shelf;
 
     BooksAPI.update(book, newShelf).then(res => {
 
       book.shelf = newShelf;  // update the book object to show new shelf
-      console.log(`Previous Shelf: ${prevShelf}\n New Shelf: ${book.shelf}`);
+      //console.log(`Previous Shelf: ${prevShelf}\n New Shelf: ${book.shelf}`);
 
-      // remove the book from it's previous shelf and add to the new shelf
-      this.setState(currentState => ({
-        [prevShelf]: currentState[prevShelf].filter(b => b.id !== book.id),
-        [newShelf]: currentState[newShelf].concat([book])
-      }))
+      // remove the book from it's previous shelf (if applicable) and add to the new shelf
+      if (prevShelf !== '') {
+        this.setState(currentState => ({
+          [prevShelf]: currentState[prevShelf].filter(b => b.id !== book.id),
+          [newShelf]: currentState[newShelf].concat([book])
+        }))
+      }
+      else {
+        this.setState(currentState => ({
+          [newShelf]: currentState[newShelf].concat([book])
+        }))
+      }
     })
   }
 
@@ -78,7 +85,10 @@ class App extends Component {
 
           {/* Search page*/}
           <Route path='/search' render={() => (
-            <SearchBooks onShelfChange={this.onShelfChange} />
+            <SearchBooks
+              onShelfChange={this.onShelfChange}
+              currentBooks={this.state.currentlyReading.concat(this.state.wantToRead,this.state.read)}
+            />
           )}
           />
         </div>
