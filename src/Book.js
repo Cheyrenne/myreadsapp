@@ -7,6 +7,11 @@ class Book extends Component {
         book: PropTypes.object.isRequired,
     }
 
+    // Prevent selecting the current shelf book is already on
+    disableShelfOption = (shelf, option) => {
+        return (shelf === option);
+    }
+
     render() {
         const {book, onChange} = this.props;
         //console.log(book);
@@ -21,9 +26,9 @@ class Book extends Component {
                 <div className="dropdown">
                     <select onChange={(e) => onChange(book, e.target.value)} defaultValue={book.shelf || "move"} className="shelf-select">
                         <option value="move" disabled>Move to...</option>
-                        <option value="currentlyReading">Currently Reading</option>
-                        <option value="wantToRead">Want to Read</option>
-                        <option value="read">Read</option>
+                        <option disabled={this.disableShelfOption(book.shelf, "currentlyReading")} value="currentlyReading">Currently Reading</option>
+                        <option disabled={this.disableShelfOption(book.shelf, "wantToRead")} value="wantToRead">Want to Read</option>
+                        <option disabled={this.disableShelfOption(book.shelf, "read")} value="read">Read</option>
                     </select>
                 </div>
             </li>

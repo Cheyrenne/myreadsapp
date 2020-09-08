@@ -32,14 +32,11 @@ class App extends Component {
 
   onShelfChange = (book, newShelf) => {
 
-    //TODO: prevent from "changing" to the same shelf
-
     const prevShelf = book.shelf === undefined ? '' : book.shelf;
 
     BooksAPI.update(book, newShelf).then(res => {
 
       book.shelf = newShelf;  // update the book object to show new shelf
-      //console.log(`Previous Shelf: ${prevShelf}\n New Shelf: ${book.shelf}`);
 
       // remove the book from it's previous shelf (if applicable) and add to the new shelf
       if (prevShelf !== '') {
