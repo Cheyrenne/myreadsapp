@@ -14,12 +14,20 @@ class Book extends Component {
 
     render() {
         const { book, onChange } = this.props;
+        const imageUrl = book.imageLinks === undefined ? 'none' : book.imageLinks.thumbnail;
         //console.log(book);
         return (
             <li>
                 <div className='book'>
                     <div className='book-top'>
-                        <div className='book-cover' style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}>
+                        <div className='book-cover' style={
+                            {
+                                width: 128,
+                                height: 193,
+                                backgroundColor: '#ccc',
+                                backgroundImage: `url(${imageUrl})`,
+                            }
+                        }>
                         </div>
                         <div className="book-shelf-changer">
                             <select onChange={(e) => onChange(book, e.target.value)} defaultValue={book.shelf || "move"}>
