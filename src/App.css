@@ -123,14 +123,6 @@ body, .app {
   font-size: 0;
 }
 
-footer {
-  margin-top: 50px;
-  background-color: #282c34;
-  min-height: 10vh;
-  color: white;
-  font-size: calc(10px + 1vmin);
-}
-
 /* Search Page */
 
 .search-books-bar {
