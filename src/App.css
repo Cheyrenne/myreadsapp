@@ -1,12 +1,13 @@
-/* css tricks from the course 
-max-width actually overrides the width, which means that the image will be kept contained within its container.
-*/
 html, body, .root {
   height: 100%;
 }
 
-img {
-  max-width: 100%;
+body {
+  line-height: 1.5;
+}
+
+body, .app {
+  background: white;
 }
 
 .app-header {
@@ -33,46 +34,73 @@ img {
   flex: 1;
 }
 
-.shelf-title {
-  margin: 0 20vh; 
+.shelf {
+  padding: 0 10px 20px;
 }
 
-.shelf {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  flex-wrap: wrap;
-  list-style-type: none;
+.shelf-title {
+  border-bottom: 1px solid #dedede;
+}
+
+.shelf-books {
+  text-align: center;
+}
+
+@media (min-width: 600px) {
+  .bookshelf {
+    padding: 0 20px 40px;
+  }
 }
 
 .book {
-  text-align: center;
-  border: 1px solid lightgray;
-  padding: 0;
-  margin-right: 40px;
-  box-shadow: 0 0 10px lightslategray;
-}
-  
-  
-figure {
-  width: 150px;
-  height: 250px;
-  overflow-y: hidden;
+  width: 140px;
 }
 
-figcaption {
-  font-weight: bold;
+.book-title,
+.book-authors {
+  font-size: 0.8em;
 }
 
-figcaption, figure > p {
-  font-size: 14px;
-  margin: 0;
-
+.book-title {
+  margin-top: 10px;
 }
 
-figure > img {
-  height: 175px;
-  width: inherit;
+.book-authors {
+  color: #999;
+}
+
+.book-cover {
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  background: #eee;
+}
+
+.book-top {
+  position: relative;
+  height: 200px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.book-shelf-changer {
+  position: absolute;
+  right: 0;
+  bottom: -10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #60ac5d;
+  background-image: url('./icons/arrow-drop-down.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 20px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.book-shelf-changer select {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
 }
 
 .open-search {
@@ -94,7 +122,6 @@ figure > img {
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   font-size: 0;
 }
-
 
 footer {
   margin-top: 50px;

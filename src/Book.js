@@ -13,25 +13,27 @@ class Book extends Component {
     }
 
     render() {
-        const {book, onChange} = this.props;
+        const { book, onChange } = this.props;
         //console.log(book);
         return (
-            <li className='book'>
-
-                <figure>
-                    <img src={this.props.book.imageLinks.thumbnail} alt='book-cover' />
-                    <figcaption>{this.props.book.title}</figcaption>
-                    <p>{`${this.props.book.authors}`}</p>
-                </figure>
-                <div className="dropdown">
-                    <select onChange={(e) => onChange(book, e.target.value)} defaultValue={book.shelf || "move"} className="shelf-select">
-                        <option value="move" disabled>Move to...</option>
-                        <option disabled={this.disableShelfOption(book.shelf, "currentlyReading")} value="currentlyReading">Currently Reading</option>
-                        <option disabled={this.disableShelfOption(book.shelf, "wantToRead")} value="wantToRead">Want to Read</option>
-                        <option disabled={this.disableShelfOption(book.shelf, "read")} value="read">Read</option>
-                    </select>
+            <li>
+                <div className='book'>
+                    <div className='book-top'>
+                        <div className='book-cover' style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}>
+                        </div>
+                        <div className="book-shelf-changer">
+                            <select onChange={(e) => onChange(book, e.target.value)} defaultValue={book.shelf || "move"}>
+                                <option value="move" disabled>Move to...</option>
+                                <option disabled={this.disableShelfOption(book.shelf, "currentlyReading")} value="currentlyReading">Currently Reading</option>
+                                <option disabled={this.disableShelfOption(book.shelf, "wantToRead")} value="wantToRead">Want to Read</option>
+                                <option disabled={this.disableShelfOption(book.shelf, "read")} value="read">Read</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div className='book-title'>{book.title}</div>
+                    <div className='book-authors'>{`${book.authors}`}</div>
                 </div>
-            </li>
+            </li >
         )
     }
 }

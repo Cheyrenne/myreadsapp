@@ -3,22 +3,23 @@ import Book from './Book'
 import PropTypes from 'prop-types'
 
 const Shelf = (props) => {
-    const { shelfBooks, shelfname , onShelfChange} = props;
+    const { shelfBooks, shelfname, onShelfChange } = props;
 
     return (
-        <div className='list-books-content'>
+        <div className='shelf'>
             <h2 className='shelf-title'>{shelfname}</h2>
-            <ul className='shelf'>
-                {shelfBooks.map(book => (
-                    <Book
-                        className='book'
-                        key={book.id}
-                        book={book}
-                        onChange={onShelfChange}
-                    ></Book>
-                ))}
-            </ul>
-            <hr />
+            <div className='shelf-books'>
+                <ul className='books-grid'>
+                    {shelfBooks.map(book => (
+                        <Book
+                            className='book'
+                            key={book.id}
+                            book={book}
+                            onChange={onShelfChange}
+                        ></Book>
+                    ))}
+                </ul>
+            </div>
         </div>
     )
 }
