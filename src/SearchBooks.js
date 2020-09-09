@@ -22,6 +22,7 @@ class SearchBooks extends Component {
 
             BooksAPI.search(query).then(res => {
 
+
                 if (res['error']) {
                     this.setState({
                         bookMatches: [],
@@ -29,6 +30,7 @@ class SearchBooks extends Component {
                 }
                 else {
                     this.setShelf(res); // show the shelf of any books already in the app
+                    //console.log(res)
                     this.setState({
                         bookMatches: res,
                     })
@@ -72,13 +74,12 @@ class SearchBooks extends Component {
                     </div>
                 </div>
                 <div className="search-books-results">
-                    <ol className="books-grid"></ol>
+                    <Shelf
+                        shelfBooks={this.state.bookMatches}
+                        shelfname='Search results'
+                        onShelfChange={this.props.onShelfChange}
+                    />
                 </div>
-                <Shelf
-                    shelfBooks={this.state.bookMatches}
-                    shelfname='Search results'
-                    onShelfChange={this.props.onShelfChange}
-                />
             </div >
         )
     }
