@@ -7,9 +7,9 @@ import { Route, Link } from 'react-router-dom'
 
 // values returned from server mapped to heading names
 const SHELVES = {
-  'currentlyReading': 'Currently Reading',
-  'wantToRead': 'Want to Read',
-  'read': 'Finished'
+  currentlyReading: 'Reading',
+  wantToRead: 'Want to Read',
+  read: 'Read'
 };
 
 class App extends Component {
@@ -20,6 +20,7 @@ class App extends Component {
     read: []
   }
 
+  // filter current books into arrays based on current shelf
   componentDidMount() {
     BooksAPI.getAll().then(books => {
       this.setState(() => ({
@@ -37,18 +38,28 @@ class App extends Component {
     BooksAPI.update(book, newShelf).then(res => {
 
       book.shelf = newShelf;  // update the book object to show new shelf
+      
+      // Remove book
+      if (newShelf === 'remove') {
+        delete(book.shelf);
+        this.setState(currentState => ({
+          [prevShelf]: currentState[prevShelf].filter(b => b.id !== book.id)
+        }));
+      }
 
-      // remove the book from it's previous shelf (if applicable) and add to the new shelf
-      if (prevShelf !== '') {
+      // Remove the book from it's previous shelf and add to the new shelf
+      else if (prevShelf !== '') {
         this.setState(currentState => ({
           [prevShelf]: currentState[prevShelf].filter(b => b.id !== book.id),
           [newShelf]: currentState[newShelf].concat([book])
-        }))
+        }));
       }
+
+      // Add book from the search page, which has no previous shelf
       else {
         this.setState(currentState => ({
           [newShelf]: currentState[newShelf].concat([book])
-        }))
+        }));
       }
     })
   }

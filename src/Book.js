@@ -35,6 +35,11 @@ class Book extends Component {
                                 <option disabled={this.disableShelfOption(book.shelf, "currentlyReading")} value="currentlyReading">Currently Reading</option>
                                 <option disabled={this.disableShelfOption(book.shelf, "wantToRead")} value="wantToRead">Want to Read</option>
                                 <option disabled={this.disableShelfOption(book.shelf, "read")} value="read">Read</option>
+                                {
+                                    book.shelf !== undefined && (
+                                        <option value="remove">Remove</option>
+                                    )
+                                }
                             </select>
                         </div>
                     </div>
