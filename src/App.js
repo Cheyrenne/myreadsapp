@@ -7,7 +7,7 @@ import { Route, Link } from 'react-router-dom'
 
 // values returned from server mapped to heading names
 const SHELVES = {
-  currentlyReading: 'Reading',
+  currentlyReading: 'Currently Reading',
   wantToRead: 'Want to Read',
   read: 'Read'
 };
@@ -40,7 +40,7 @@ class App extends Component {
       book.shelf = newShelf;  // update the book object to show new shelf
       
       // Remove book
-      if (newShelf === 'remove') {
+      if (newShelf === 'none') {
         delete(book.shelf);
         this.setState(currentState => ({
           [prevShelf]: currentState[prevShelf].filter(b => b.id !== book.id)
