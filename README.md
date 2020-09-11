@@ -1,68 +1,82 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# MyReads Project
 
-## Available Scripts
+The MyReads project is a book tracking app that contains 3 "shelves" on which to categorize books onto. You may change which shelf a book is on, or remove the book entirely from the 3 shelves. The user can search for new books and add them to a shelf. If a book returned by the search feature is already contained on a shelf in the app, then that state is reflected in the select dropdown on the search results page.
 
-In the project directory, you can run:
+## Installing and Running
 
-### `yarn start`
+To install and start the project:
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+* install all project dependencies with `npm install`
+* start the development server with `npm start`
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Files Included
+```bash
+├── README.md - This file.
+├── SEARCH_TERMS.md # The whitelisted short collection of available search terms to use with the app
+├── package.json # npm package manager file. 
+├── public
+│   ├── favicon.ico 
+│   └── index.html 
+└── src
+    ├── App.css 
+    ├── App.js 
+    ├── App.test.js 
+    ├── BooksAPI.js # A JavaScript API for the provided Udacity backend. Instructions for the methods are below.
+    ├── icons 
+    │   ├── add.svg
+    │   ├── arrow-back.svg
+    │   └── arrow-drop-down.svg
+    ├── index.css 
+    └── index.js 
+```
 
-### `yarn test`
+## Backend Server
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The provided file [`BooksAPI.js`](src/BooksAPI.js) contains the methods to perform operations on the backend:
 
-### `yarn build`
+* [`getAll`](#getall)
+* [`update`](#update)
+* [`search`](#search)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### `getAll`
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Method Signature:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```js
+getAll()
+```
 
-### `yarn eject`
+* Returns a Promise which resolves to a JSON object containing a collection of book objects.
+* This collection represents the books currently in the bookshelves in the app.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### `update`
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Method Signature:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```js
+update(book, shelf)
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+* book: `<Object>` containing at minimum an `id` attribute
+* shelf: `<String>` contains one of ["wantToRead", "currentlyReading", "read"]  
+* Returns a Promise which resolves to a JSON object containing the response data of the POST request
 
-## Learn More
+### `search`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Method Signature:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```js
+search(query, maxResults)
+```
 
-### Code Splitting
+* query: `<String>`
+* maxResults: `<Integer>` Due to the nature of the backend server, search results are capped at 20, even if this is set higher.
+* Returns a Promise which resolves to a JSON object containing a collection of book objects.
+* These books do not know which shelf they are on. They are raw results only.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+## Important
+The backend API uses a fixed set of cached search results and is limited to a particular set of search terms, which can be found in [SEARCH_TERMS.md](SEARCH_TERMS.md). That list of terms are the _only_ terms that will work with the backend, so don't be surprised if your searches for Basket Weaving or Bubble Wrap don't come back with any results.
 
-### Analyzing the Bundle Size
+## Create React App
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app). You can find more information on how to perform common tasks [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
