@@ -29,13 +29,13 @@ class Book extends Component {
                             }
                         }>
                         </div>
-                        <div className="book-shelf-changer">
-                            <select onChange={(e) => onChange(book, e.target.value)} defaultValue={book.shelf || "move"}>
-                                <option value="move" disabled>Move to...</option>
-                                <option disabled={this.disableShelfOption(book.shelf, "currentlyReading")} value="currentlyReading">Currently Reading</option>
-                                <option disabled={this.disableShelfOption(book.shelf, "wantToRead")} value="wantToRead">Want to Read</option>
-                                <option disabled={this.disableShelfOption(book.shelf, "read")} value="read">Read</option>
-                                <option disabled={this.disableShelfOption(book.shelf, undefined)} value="none">None</option>
+                        <div className='book-shelf-changer'>
+                            <select onChange={(e) => onChange(book, e.target.value)} defaultValue={book.shelf || 'move'}>
+                                <option value='move' disabled>Move to...</option>
+                                <option disabled={this.disableShelfOption(book.shelf, 'currentlyReading')} value='currentlyReading'>Currently Reading</option>
+                                <option disabled={this.disableShelfOption(book.shelf, 'wantToRead')} value='wantToRead'>Want to Read</option>
+                                <option disabled={this.disableShelfOption(book.shelf, 'read')} value='read'>Read</option>
+                                <option disabled={this.disableShelfOption(book.shelf, undefined)} value='none'>None</option>
                             </select>
                         </div>
                     </div>

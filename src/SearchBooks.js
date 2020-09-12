@@ -42,9 +42,7 @@ class SearchBooks extends Component {
             }) :
             this.setState({
                 query: query
-            })
-
-
+            });
     };
 
     // Show what shelf book is currently on in the app if it shows up in a search
@@ -69,7 +67,7 @@ class SearchBooks extends Component {
                             type='text' />
                     </div>
                 </div>
-                <div className="search-books-results">
+                <div className='search-books-results'>
                     <Shelf
                         shelfBooks={this.state.bookMatches}
                         shelfname='Search results'

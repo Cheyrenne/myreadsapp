@@ -67,13 +67,13 @@ class App extends Component {
   render() {
 
     return (
-      <div className="App">
-        <div className="container">
+      <div className='App'>
+        <div className='container'>
 
           {/* Root/home page */}
           <Route exact path='/' render={() => (
             <div>
-              <header className="app-header">
+              <header className='app-header'>
                 <p>MyReads</p>
               </header>
               {Object.entries(SHELVES).map(shelf => (
