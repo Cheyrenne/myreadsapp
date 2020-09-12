@@ -15,6 +15,7 @@ class Book extends Component {
     render() {
         const { book, onChange } = this.props;
         const imageUrl = book.imageLinks === undefined ? 'none' : book.imageLinks.thumbnail;
+        const authors = book.authors === undefined ? 'Unknown author' : book.authors;
         //console.log(book);
         return (
             <li>
@@ -40,7 +41,7 @@ class Book extends Component {
                         </div>
                     </div>
                     <div className='book-title'>{book.title}</div>
-                    <div className='book-authors'>{`${book.authors}`}</div>
+                    <div className='book-authors'>{`${authors}`}</div>
                 </div>
             </li >
         )
