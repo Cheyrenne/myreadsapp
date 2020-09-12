@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
-import * as BooksAPI from './BooksAPI'
+import * as BooksAPI from './BooksAPI';
 import Shelf from './Shelf';
-import SearchBooks from './SearchBooks'
-import { Route, Link } from 'react-router-dom'
+import SearchBooks from './SearchBooks';
+import { Route, Link } from 'react-router-dom';
 
 // values returned from server mapped to heading names
 const SHELVES = {
@@ -27,8 +27,8 @@ class App extends Component {
         currentlyReading: books.filter(b => b.shelf === 'currentlyReading'),
         wantToRead: books.filter(b => b.shelf === 'wantToRead'),
         read: books.filter(b => b.shelf === 'read')
-      }))
-    })
+      }));
+    });
   }
 
   onShelfChange = (book, newShelf) => {
@@ -61,8 +61,8 @@ class App extends Component {
           [newShelf]: currentState[newShelf].concat([book])
         }));
       }
-    })
-  }
+    });
+  };
 
   render() {
 

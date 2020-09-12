@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class Book extends Component {
 
@@ -10,13 +10,12 @@ class Book extends Component {
     // Prevent selecting the current shelf book is already on
     disableShelfOption = (shelf, option) => {
         return (shelf === option);
-    }
+    };
 
     render() {
         const { book, onChange } = this.props;
         const imageUrl = book.imageLinks === undefined ? 'none' : book.imageLinks.thumbnail;
         const authors = book.authors === undefined ? 'Unknown author' : book.authors;
-        //console.log(book);
         return (
             <li>
                 <div className='book'>

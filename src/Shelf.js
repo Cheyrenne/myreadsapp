@@ -1,6 +1,6 @@
-import React from 'react'
-import Book from './Book'
-import PropTypes from 'prop-types'
+import React from 'react';
+import Book from './Book';
+import PropTypes from 'prop-types';
 
 const Shelf = (props) => {
     const { shelfBooks, shelfname, onShelfChange } = props;

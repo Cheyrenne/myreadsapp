@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import PropTypes from 'prop-types'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Shelf from './Shelf';
-import * as BooksAPI from './BooksAPI'
+import * as BooksAPI from './BooksAPI';
 
 class SearchBooks extends Component {
     static propTypes = {
@@ -22,7 +22,6 @@ class SearchBooks extends Component {
 
             BooksAPI.search(query).then(res => {
 
-
                 if (res['error']) {
                     this.setState({
                         bookMatches: [],
@@ -30,14 +29,11 @@ class SearchBooks extends Component {
                 }
                 else {
                     this.setShelf(res); // show the shelf of any books already in the app
-                    //console.log(res)
                     this.setState({
                         bookMatches: res,
-                    })
+                    });
                 }
-                //console.log("state: ", this.state.query)
-                //console.log("query:", query)
-            })
+            });
         }
         query === '' ?
             this.setState({
@@ -46,10 +42,10 @@ class SearchBooks extends Component {
             }) :
             this.setState({
                 query: query
-            });
+            })
 
 
-    }
+    };
 
     // Show what shelf book is currently on in the app if it shows up in a search
     setShelf = (matches) => {
@@ -59,7 +55,7 @@ class SearchBooks extends Component {
                 match.shelf = book.shelf;
             }
         });
-    }
+    };
 
     render() {
         return (
